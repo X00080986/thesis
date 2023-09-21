@@ -26,6 +26,7 @@ public class Handler implements RequestHandler<Map<String,String>, String> {
         } catch(final LambdaException e) {
             logger.log(e.getMessage());
         }
+
         return response != null ? "Successful Invocation" : "Error";
     }
 }
