@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the CPU Intensive JDK17 Lambda API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://cpu-jdk17-lambda-artifacts-edad0cb5c9fc7e14/32b19c50b3e4598cbfa9f48358cedaec
+      Handler: example.Handler::handleRequest
+      Runtime: java17
+      Description: Java 17 CPU Intensive function for lambda
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: cpu-jdk17-lambda-lib
+      Description: Dependencies for the cpu-jdk17-lambda sample app.
+      ContentUri: s3://cpu-jdk17-lambda-artifacts-edad0cb5c9fc7e14/512b421fd8dcfe4ae4629eabf22faa5d
+      CompatibleRuntimes:
+      - java17

@@ -1,0 +1,1 @@
+blank-jdk11-lambda-artifacts-d5a532b344764f4c

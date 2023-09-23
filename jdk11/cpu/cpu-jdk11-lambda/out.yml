@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the CPU Intensive JDK 11 Lambda
+  API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://cpu-jdk11-lambda-artifacts-c457f6ecff9aba55/3afe4479de6a5b0d3b5a2aceb4a881da
+      Handler: example.Handler::handleRequest
+      Runtime: java11
+      Description: Java 11 CPU Intensive function for lambda
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: cpu-jdk11-lambda-lib
+      Description: Dependencies for the cpu-jdk11-lambda sample app.
+      ContentUri: s3://cpu-jdk11-lambda-artifacts-c457f6ecff9aba55/da8a128735d86ea5902e0c1ccc7f8f64
+      CompatibleRuntimes:
+      - java11

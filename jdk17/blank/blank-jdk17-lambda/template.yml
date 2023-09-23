@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
-Description: An AWS Lambda application that calls the Empty JDK17 Lambda API.
+Description: An AWS Lambda application that calls the Blank JDK17 Lambda API.
 Resources:
   function:
     Type: AWS::Serverless::Function

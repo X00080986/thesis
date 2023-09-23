@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the CPU Intensive JDK17 Snapstart
+  API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://cpu-jdk17-snapstart-artifacts-c3b28b209a9261d3/2e278b363bba6a1fd5ef9ad44526efcf
+      Handler: example.Handler::handleRequest
+      Runtime: java17
+      Description: Java 17 CPU Intensive function for snapstart
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: cpu-jdk17-snapstart-lib
+      Description: Dependencies for the cpu-jdk17-snapstart sample app.
+      ContentUri: s3://cpu-jdk17-snapstart-artifacts-c3b28b209a9261d3/bd03c47b2143b49d2ac745c7a049e673
+      CompatibleRuntimes:
+      - java17

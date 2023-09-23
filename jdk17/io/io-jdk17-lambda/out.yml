@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the IO Intensive JDK 17 Lambda API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://io-jdk17-lambda-artifacts-24f531a2ef0aa4ca/c4e5acc8e6054a1e6e267090d972290a
+      Handler: example.Handler
+      Runtime: java17
+      Description: Java 17 IO Intensive function for lambda
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active

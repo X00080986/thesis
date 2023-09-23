@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the IO Intensive JDK 11 Snapstart
+  API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://io-jdk11-snapstart-artifacts-97c5e5edaeeac64b/0f7c228c393f4e0dbd5b955c657634ec
+      Handler: example.Handler
+      Runtime: java11
+      Description: Java 11 IO Intensive function for snapstart
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active

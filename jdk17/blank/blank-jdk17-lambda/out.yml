@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the Empty JDK17 Lambda API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://blank-jdk17-lambda-artifacts-17c6bf2e82d12eae/c65de2697d16b0ea1ef051a10129c94d
+      Handler: example.Handler::handleRequest
+      Runtime: java17
+      Description: Java 17 empty function for lambda
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: blank-jdk17-lambda-lib
+      Description: Dependencies for the blank-jdk17-lambda sample app.
+      ContentUri: s3://blank-jdk17-lambda-artifacts-17c6bf2e82d12eae/1b816f16392ac2bf0a63c5decad61621
+      CompatibleRuntimes:
+      - java17

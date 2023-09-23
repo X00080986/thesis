@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the Blank JDK 11 Lambda API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://blank-jdk11-lambda-artifacts-d5a532b344764f4c/6bc26f6ac37472f4ed184d1debca53ed
+      Handler: example.Handler::handleRequest
+      Runtime: java11
+      Description: Java 11 empty function for lambda
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: blank-jdk11-lambda-lib
+      Description: Dependencies for the blank-jdk11-lambda sample app.
+      ContentUri: s3://blank-jdk11-lambda-artifacts-d5a532b344764f4c/6d9c33b616c1276227d214b724a9e47b
+      CompatibleRuntimes:
+      - java11

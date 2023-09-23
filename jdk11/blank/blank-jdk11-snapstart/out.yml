@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the Blank JDK 11 SnapStart API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://blank-jdk11-snapstart-artifacts-fac5d53a15af81f3/5bac40b8ebc2948e6ffc9c65504bac7b
+      Handler: example.Handler::handleRequest
+      Runtime: java11
+      Description: Java 11 empty function for snapstart
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: blank-jdk11-snapstart-lib
+      Description: Dependencies for the blank-jdk11-snapstart sample app.
+      ContentUri: s3://blank-jdk11-snapstart-artifacts-fac5d53a15af81f3/c41e5e9565ed0ed952d50f20933d5f76
+      CompatibleRuntimes:
+      - java11

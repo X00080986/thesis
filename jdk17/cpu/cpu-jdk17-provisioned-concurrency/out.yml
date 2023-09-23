@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the CPU Intensive JDK17 Provisioned
+  Concurrency API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://cpu-jdk17-provisioned-concurrency-artifacts-e781d26edcefe0f5/3754facfbb0b6b9157118a3356d1bae1
+      Handler: example.Handler::handleRequest
+      Runtime: java17
+      Description: Java 17 CPU Intensive function for provisioned concurrency
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: cpu-jdk17-provisioned-concurrency-lib
+      Description: Dependencies for the cpu-jdk17-provisioned-concurrency sample app.
+      ContentUri: s3://cpu-jdk17-provisioned-concurrency-artifacts-e781d26edcefe0f5/6d2b38052bffca9a4e8716e1f30f44c9
+      CompatibleRuntimes:
+      - java17

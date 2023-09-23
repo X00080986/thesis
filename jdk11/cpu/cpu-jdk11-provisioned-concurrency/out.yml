@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the CPU Intensive JDK 11 Provisioned
+  Concurrency API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://cpu-jdk11-provisioned-concurrency-artifacts-940f2582f919a15d/1d218b30b297715ce708acbd01f29d92
+      Handler: example.Handler::handleRequest
+      Runtime: java11
+      Description: Java 11 CPU Intensive function for provisioned concurrency
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: cpu-jdk11-provisioned-concurrency-lib
+      Description: Dependencies for the cpu-jdk11-provisioned-concurrency sample app.
+      ContentUri: s3://cpu-jdk11-provisioned-concurrency-artifacts-940f2582f919a15d/3b7dcce1407dc6232eef22318e926499
+      CompatibleRuntimes:
+      - java11

@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the Blank JDK 11 Provisioned Concurrency
+  API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://blank-jdk11-provisioned-concurrency-artifacts-69f42e0a8f9c6c44/afc149d23dc10820c0b0261d783ba3e1
+      Handler: example.Handler::handleRequest
+      Runtime: java11
+      Description: Java 11 empty function for provisioned concurrency
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
+      Layers:
+      - Ref: libs
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: blank-jdk11-provisioned-concurrency-lib
+      Description: Dependencies for the blank-jdk11-provisioned-concurrency sample
+        app.
+      ContentUri: s3://blank-jdk11-provisioned-concurrency-artifacts-69f42e0a8f9c6c44/5f9b99fd9adcc4d0309dd6175252ff2c
+      CompatibleRuntimes:
+      - java11

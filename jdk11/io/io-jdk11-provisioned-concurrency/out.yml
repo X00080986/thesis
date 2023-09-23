@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the IO Intensive JDK 11 Provisioned
+  Concurrency API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://io-jdk11-provisioned-concurrency-artifacts-1b66fe4efe4c4562/5fd1645468be2c0815c24c8859aaa6a1
+      Handler: example.Handler
+      Runtime: java11
+      Description: Java 11 IO Intensive function for provisioned concurrency
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active

@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Lambda application that calls the IO Intensive JDK 17 Provisioned
+  Concurrency API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://io-jdk17-provisioned-concurrency-artifacts-6127439c17d435d4/18e402b4e200841d9007d6f02bec4581
+      Handler: example.Handler
+      Runtime: java17
+      Description: Java 17 IO Intensive function for provisioned concurrency
+      MemorySize: 2048
+      Timeout: 10
+      Policies:
+      - AWSLambdaBasicExecutionRole
+      - AWSLambda_ReadOnlyAccess
+      - AWSXrayWriteOnlyAccess
+      - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active
