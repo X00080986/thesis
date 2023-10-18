@@ -10,9 +10,9 @@ import java.util.Map;
 public class Handler implements RequestHandler<Map<String,String>, String> {
 
     @Override
-    public String handleRequest(Map<String,String> event, Context context) {
+    public String handleRequest(final Map<String,String> event, final Context context) {
 
-        LambdaLogger logger = context.getLogger();
+        final LambdaLogger logger = context.getLogger();
         logger.log("Handler invoked");
 
 	logger.log("Started calculating nth fibonacci term");
@@ -23,7 +23,7 @@ public class Handler implements RequestHandler<Map<String,String>, String> {
         return fib != 0 ? "Successful Invocation" : "Error";
     }
 
-    public int nthFibonacciTerm(int n) {
+    public int nthFibonacciTerm(final int n) {
         if (n == 1 || n == 0) {
             return n;
         }
