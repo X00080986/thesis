@@ -1,0 +1,10 @@
+# AWSLOGS Github URL: https://github.com/jorgebastida/awslogs
+
+
+### Read all AWS Logs within the last 100 days, find all of the startup and execution times, search for the number of executions
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | grep REPORT
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | grep REPORT | wc -l
