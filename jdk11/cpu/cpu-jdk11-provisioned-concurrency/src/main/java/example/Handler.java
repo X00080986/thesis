@@ -17,7 +17,7 @@ public class Handler implements RequestHandler<Map<String,String>, String> {
 
 	logger.log("Started calculating nth fibonacci term");
 	int fib = 0;
-	fib = nthFibonacciTerm(200);
+	fib = nthFibonacciTerm(45);
 	logger.log("Finished calculating nth fibonacci term: " + Integer.toString(fib));
 
         return fib != 0 ? "Successful Invocation" : "Error";
