@@ -65,7 +65,7 @@ ECHO "Invoking JDK 11 IO Lambda"
 
 
 FUNCTION=$(aws cloudformation --profile AdministratorAccess-763087020924 describe-stack-resource --stack-name io-jdk11-lambda --logical-resource-id function --query 'StackResourceDetail.PhysicalResourceId' --output text)
-aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://events/dynamodb-record.json' out/io-jdk11-lambda-out.json --profile AdministratorAccess-763087020924
+aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://jdk11/io/io-jdk11-lambda/events/dynamodb-record.json' out/io-jdk11-lambda-out.json --profile AdministratorAccess-763087020924
 
 
 ################# Invoke JDK 11 IO Provisioned Concurrency
@@ -74,7 +74,7 @@ ECHO "Invoking JDK 11 IO Provisioned Concurrency"
 
 
 FUNCTION=$(aws cloudformation --profile AdministratorAccess-763087020924 describe-stack-resource --stack-name io-jdk11-provisioned-concurrency --logical-resource-id function --query 'StackResourceDetail.PhysicalResourceId' --output text)
-aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://events/dynamodb-record.json' out/io-jdk11-provisioned-concurrency-out.json --profile AdministratorAccess-763087020924
+aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://jdk11/io/io-jdk11-provisioned-concurrency/events/dynamodb-record.json' out/io-jdk11-provisioned-concurrency-out.json --profile AdministratorAccess-763087020924
 
 
 ################# Invoke JDK 11 IO Snapstart
@@ -83,7 +83,7 @@ ECHO "Invoking JDK 11 IO Snapstart"
 
 
 FUNCTION=$(aws cloudformation --profile AdministratorAccess-763087020924 describe-stack-resource --stack-name io-jdk11-snapstart --logical-resource-id function --query 'StackResourceDetail.PhysicalResourceId' --output text)
-aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://events/dynamodb-record.json' out/io-jdk11-snapstart-out.json --profile AdministratorAccess-763087020924
+aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://jdk11/io/io-jdk11-snapstart/events/dynamodb-record.json' out/io-jdk11-snapstart-out.json --profile AdministratorAccess-763087020924
 
 
 
@@ -152,7 +152,7 @@ ECHO "Invoking JDK 17 IO Lambda"
 
 
 FUNCTION=$(aws cloudformation --profile AdministratorAccess-763087020924 describe-stack-resource --stack-name io-jdk17-lambda --logical-resource-id function --query 'StackResourceDetail.PhysicalResourceId' --output text)
-aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://events/dynamodb-record.json' out/io-jdk17-lambda-out.json --profile AdministratorAccess-763087020924
+aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://jdk17/io/io-jdk17-lambda/events/dynamodb-record.json' out/io-jdk17-lambda-out.json --profile AdministratorAccess-763087020924
 
 
 ################# Invoke JDK 17 IO Provisioned Concurrency
@@ -161,7 +161,7 @@ ECHO "Invoking JDK 17 IO Provisioned Concurrency"
 
 
 FUNCTION=$(aws cloudformation --profile AdministratorAccess-763087020924 describe-stack-resource --stack-name io-jdk17-provisioned-concurrency --logical-resource-id function --query 'StackResourceDetail.PhysicalResourceId' --output text)
-aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://events/dynamodb-record.json' out/io-jdk17-provisioned-concurrency-out.json --profile AdministratorAccess-763087020924
+aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://jdk17/io/io-jdk17-provisioned-concurrency/events/dynamodb-record.json' out/io-jdk17-provisioned-concurrency-out.json --profile AdministratorAccess-763087020924
 
 
 ################# Invoke JDK 17 IO Snapstart
@@ -170,4 +170,4 @@ ECHO "Invoking JDK 17 IO Snapstart"
 
 
 FUNCTION=$(aws cloudformation --profile AdministratorAccess-763087020924 describe-stack-resource --stack-name io-jdk17-snapstart --logical-resource-id function --query 'StackResourceDetail.PhysicalResourceId' --output text)
-aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://events/dynamodb-record.json' out/io-jdk17-snapstart-out.json --profile AdministratorAccess-763087020924
+aws lambda invoke --cli-binary-format raw-in-base64-out --function-name $FUNCTION --payload 'file://jdk17/io/io-jdk17-snapstart/events/dynamodb-record.json' out/io-jdk17-snapstart-out.json --profile AdministratorAccess-763087020924
