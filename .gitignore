@@ -1,4 +1,12 @@
+*.lock
+*.probe
+
+build/*
+
+.gradle/*
+
 out/
+
 .DS_Store
 # Compiled class file
 *.class

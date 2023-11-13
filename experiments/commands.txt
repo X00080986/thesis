@@ -1,0 +1,163 @@
+# AWSLOGS Github URL: https://github.com/jorgebastida/awslogs
+
+
+
+### Read all AWS Logs within the last 100 days, find all of the execution and initialisation times, and then search for the total number of executions
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | WC -l
+
+
+
+### EXPERIMENT: COLD START TIMEOUT --- Read all AWS Logs within the last 100 days, find all of the execution and initialisation times, and then write to a log file
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 > 10-blank-jdk11-lambda-function.log
+awslogs get /aws/lambda/blank-jdk11-provisioned-concurrency-function-iQRl32Iy7Guj ALL -s100d --profile AdministratorAccess-763087020924 > 10-blank-jdk11-provisioned-concurrency-function.log
+awslogs get /aws/lambda/blank-jdk11-snapstart-function-m7ebHVSMXyqE ALL -s100d --profile AdministratorAccess-763087020924 > 10-blank-jdk11-snapstart-function.log
+awslogs get /aws/lambda/blank-jdk17-lambda-function-diSgERGUNLdU ALL -s100d --profile AdministratorAccess-763087020924 > 10-blank-jdk17-lambda-function.log
+awslogs get /aws/lambda/blank-jdk17-provisioned-concurrency-function-T19wltjcYlV5 ALL -s100d --profile AdministratorAccess-763087020924 > 10-blank-jdk17-provisioned-concurrency-function.log
+awslogs get /aws/lambda/blank-jdk17-snapstart-function-auO5zORGqDn4 ALL -s100d --profile AdministratorAccess-763087020924 > 10-blank-jdk17-spanstart-function.log
+
+
+
+### EXPERIMENT: COLD START INIT DURATIONS --- Read all AWS Logs within the last 100 days, find all of the initiation times, and then write to a log file
+
+awslogs get /aws/lambda/ ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-.log
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-blank-jdk11-lambda.log
+awslogs get /aws/lambda/blank-jdk11-provisioned-concurrency-function-iQRl32Iy7Guj ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-blank-jdk11-provisioned-concurrency.log
+awslogs get /aws/lambda/blank-jdk11-snapstart-function-m7ebHVSMXyqE ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-blank-jdk11-snapstart.log
+
+awslogs get /aws/lambda/io-jdk11-lambda-function-8exhR39xmQw8 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-io-jdk11-lambda.log
+awslogs get /aws/lambda/io-jdk11-provisioned-concurrency-function-4rUQ9MfQNPye ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-io-jdk11-provisioned-concurrency.log
+awslogs get /aws/lambda/io-jdk11-snapstart-function-GFK31Httm8Pz ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-io-jdk11-snapstart.log
+
+awslogs get /aws/lambda/cpu-jdk11-lambda-function-yp1x169vlouu ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-cpu-jdk11-lambda.log
+awslogs get /aws/lambda/cpu-jdk11-provisioned-concurrency-function-Imw6URdgj6wY ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-cpu-jdk11-provisioned-concurrency.log
+awslogs get /aws/lambda/cpu-jdk11-snapstart-function-Ep9wwwmNVGqq ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-cpu-jdk11-snapstart.log
+
+awslogs get /aws/lambda/blank-jdk17-lambda-function-diSgERGUNLdU ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-blank-jdk17-lambda.log
+awslogs get /aws/lambda/blank-jdk17-provisioned-concurrency-function-T19wltjcYlV5 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-blank-jdk17-provisioned-concurrency.log
+awslogs get /aws/lambda/blank-jdk17-snapstart-function-auO5zORGqDn4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-blank-jdk17-spanstart.log
+
+awslogs get /aws/lambda/cpu-jdk17-lambda-function-yiek4813rVkx ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-cpu-jdk17-lambda.log
+awslogs get /aws/lambda/cpu-jdk17-provisioned-concurrency-function-FXvuAFfPh5SS ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-cpu-jdk17-provisioned-concurrency.log
+awslogs get /aws/lambda/cpu-jdk17-snapstart-function-Xh18uBZFavga ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-cpu-jdk17-snapstart.log
+
+awslogs get /aws/lambda/io-jdk17-lambda-function-uj9f8roqXCvf ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-io-jdk17-lambda.log
+awslogs get /aws/lambda/io-jdk17-provisioned-concurrency-function-gTD4x9I1qStq ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-io-jdk17-provisioned-concurrency.log
+awslogs get /aws/lambda/io-jdk17-snapstart-function-PpIaHDvxdyw4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init > 500-io-jdk17-snapstart.log
+
+
+
+### EXPERIMENT: SCALED COLD START INIT DURATIONS --- Read all AWS Logs within the last 100 days, find all of the initiation times
+
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 > blank-jdk11-lambda.log
+awslogs get /aws/lambda/blank-jdk11-provisioned-concurrency-function-iQRl32Iy7Guj ALL -s100d --profile AdministratorAccess-763087020924 > blank-jdk11-provisioned-concurrency.log
+awslogs get /aws/lambda/blank-jdk11-snapstart-function-m7ebHVSMXyqE ALL -s100d --profile AdministratorAccess-763087020924 > blank-jdk11-snapstart.log
+
+awslogs get /aws/lambda/io-jdk11-lambda-function-8exhR39xmQw8 ALL -s100d --profile AdministratorAccess-763087020924 > io-jdk11-lambda.log
+awslogs get /aws/lambda/io-jdk11-provisioned-concurrency-function-4rUQ9MfQNPye ALL -s100d --profile AdministratorAccess-763087020924 > io-jdk11-provisioned-concurrency.log
+awslogs get /aws/lambda/io-jdk11-snapstart-function-GFK31Httm8Pz ALL -s100d --profile AdministratorAccess-763087020924 > io-jdk11-snapstart.log
+
+awslogs get /aws/lambda/cpu-jdk11-lambda-function-yp1x169vlouu ALL -s100d --profile AdministratorAccess-763087020924 > cpu-jdk11-lambda.log
+awslogs get /aws/lambda/cpu-jdk11-provisioned-concurrency-function-Imw6URdgj6wY ALL -s100d --profile AdministratorAccess-763087020924 > cpu-jdk11-provisioned-concurrency.log
+awslogs get /aws/lambda/cpu-jdk11-snapstart-function-Ep9wwwmNVGqq ALL -s100d --profile AdministratorAccess-763087020924 > cpu-jdk11-snapstart.log
+
+awslogs get /aws/lambda/blank-jdk17-lambda-function-diSgERGUNLdU ALL -s100d --profile AdministratorAccess-763087020924 > blank-jdk17-lambda.log
+awslogs get /aws/lambda/blank-jdk17-provisioned-concurrency-function-T19wltjcYlV5 ALL -s100d --profile AdministratorAccess-763087020924 > blank-jdk17-provisioned-concurrency.log
+awslogs get /aws/lambda/blank-jdk17-snapstart-function-auO5zORGqDn4 ALL -s100d --profile AdministratorAccess-763087020924 > blank-jdk17-snapstart.log
+
+awslogs get /aws/lambda/cpu-jdk17-lambda-function-yiek4813rVkx ALL -s100d --profile AdministratorAccess-763087020924 > cpu-jdk17-lambda.log
+awslogs get /aws/lambda/cpu-jdk17-provisioned-concurrency-function-FXvuAFfPh5SS ALL -s100d --profile AdministratorAccess-763087020924 > cpu-jdk17-provisioned-concurrency.log
+awslogs get /aws/lambda/cpu-jdk17-snapstart-function-Xh18uBZFavga ALL -s100d --profile AdministratorAccess-763087020924 > cpu-jdk17-snapstart.log
+
+awslogs get /aws/lambda/io-jdk17-lambda-function-uj9f8roqXCvf ALL -s100d --profile AdministratorAccess-763087020924 > io-jdk17-lambda.log
+awslogs get /aws/lambda/io-jdk17-provisioned-concurrency-function-gTD4x9I1qStq ALL -s100d --profile AdministratorAccess-763087020924 > io-jdk17-provisioned-concurrency.log
+awslogs get /aws/lambda/io-jdk17-snapstart-function-PpIaHDvxdyw4 ALL -s100d --profile AdministratorAccess-763087020924 > io-jdk17-snapstart.log
+
+
+
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/blank-jdk11-provisioned-concurrency-function-iQRl32Iy7Guj ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/blank-jdk11-snapstart-function-m7ebHVSMXyqE ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+
+awslogs get /aws/lambda/io-jdk11-lambda-function-8exhR39xmQw8 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/io-jdk11-provisioned-concurrency-function-4rUQ9MfQNPye ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/io-jdk11-snapstart-function-GFK31Httm8Pz ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+
+awslogs get /aws/lambda/cpu-jdk11-lambda-function-yp1x169vlouu ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/cpu-jdk11-provisioned-concurrency-function-Imw6URdgj6wY ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/cpu-jdk11-snapstart-function-Ep9wwwmNVGqq ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+
+awslogs get /aws/lambda/blank-jdk17-lambda-function-diSgERGUNLdU ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/blank-jdk17-provisioned-concurrency-function-T19wltjcYlV5 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/blank-jdk17-snapstart-function-auO5zORGqDn4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+
+awslogs get /aws/lambda/cpu-jdk17-lambda-function-yiek4813rVkx ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/cpu-jdk17-provisioned-concurrency-function-FXvuAFfPh5SS ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/cpu-jdk17-snapstart-function-Xh18uBZFavga ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+
+awslogs get /aws/lambda/io-jdk17-lambda-function-uj9f8roqXCvf ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/io-jdk17-provisioned-concurrency-function-gTD4x9I1qStq ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+awslogs get /aws/lambda/io-jdk17-snapstart-function-PpIaHDvxdyw4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP REPORT | GREP Init
+
+
+
+
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/blank-jdk11-provisioned-concurrency-function-iQRl32Iy7Guj ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/blank-jdk11-snapstart-function-m7ebHVSMXyqE ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+
+awslogs get /aws/lambda/io-jdk11-lambda-function-8exhR39xmQw8 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/io-jdk11-provisioned-concurrency-function-4rUQ9MfQNPye ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/io-jdk11-snapstart-function-GFK31Httm8Pz ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+
+awslogs get /aws/lambda/cpu-jdk11-lambda-function-yp1x169vlouu ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/cpu-jdk11-provisioned-concurrency-function-Imw6URdgj6wY ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/cpu-jdk11-snapstart-function-Ep9wwwmNVGqq ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+
+awslogs get /aws/lambda/blank-jdk17-lambda-function-diSgERGUNLdU ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/blank-jdk17-provisioned-concurrency-function-T19wltjcYlV5 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/blank-jdk17-snapstart-function-auO5zORGqDn4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+
+awslogs get /aws/lambda/cpu-jdk17-lambda-function-yiek4813rVkx ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/cpu-jdk17-provisioned-concurrency-function-FXvuAFfPh5SS ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/cpu-jdk17-snapstart-function-Xh18uBZFavga ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+
+awslogs get /aws/lambda/io-jdk17-lambda-function-uj9f8roqXCvf ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/io-jdk17-provisioned-concurrency-function-gTD4x9I1qStq ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+awslogs get /aws/lambda/io-jdk17-snapstart-function-PpIaHDvxdyw4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "START Request" | WC -l
+
+
+
+
+
+awslogs get /aws/lambda/blank-jdk11-lambda-function-OzIOafKgin51 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/blank-jdk11-provisioned-concurrency-function-iQRl32Iy7Guj ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/blank-jdk11-snapstart-function-m7ebHVSMXyqE ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+
+awslogs get /aws/lambda/io-jdk11-lambda-function-8exhR39xmQw8 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/io-jdk11-provisioned-concurrency-function-4rUQ9MfQNPye ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/io-jdk11-snapstart-function-GFK31Httm8Pz ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+
+awslogs get /aws/lambda/cpu-jdk11-lambda-function-yp1x169vlouu ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/cpu-jdk11-provisioned-concurrency-function-Imw6URdgj6wY ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/cpu-jdk11-snapstart-function-Ep9wwwmNVGqq ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+
+awslogs get /aws/lambda/blank-jdk17-lambda-function-diSgERGUNLdU ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/blank-jdk17-provisioned-concurrency-function-T19wltjcYlV5 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/blank-jdk17-snapstart-function-auO5zORGqDn4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+
+awslogs get /aws/lambda/cpu-jdk17-lambda-function-yiek4813rVkx ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/cpu-jdk17-provisioned-concurrency-function-FXvuAFfPh5SS ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/cpu-jdk17-snapstart-function-Xh18uBZFavga ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+
+awslogs get /aws/lambda/io-jdk17-lambda-function-uj9f8roqXCvf ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/io-jdk17-provisioned-concurrency-function-gTD4x9I1qStq ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+awslogs get /aws/lambda/io-jdk17-snapstart-function-PpIaHDvxdyw4 ALL -s100d --profile AdministratorAccess-763087020924 | GREP "Billed Duration"
+
